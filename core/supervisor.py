@@ -9,7 +9,7 @@ import signal
 import subprocess
 import time
 
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LOGDIR = os.path.join(ROOT, "logs")
 STATE = os.path.join(ROOT, "procs.json")
 os.makedirs(LOGDIR, exist_ok=True)

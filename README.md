@@ -32,9 +32,15 @@ Discord portal: enable `MESSAGE CONTENT INTENT`, invite with `bot` scope (Send M
 
 ## Files
 
-- `bot.py` — Discord gateway, ping tasks + `!` commands, zip delivery
-- `engine.py` — opencode runner, sandboxing, secret redaction, JSON parsing
-- `supervisor.py` — background procs (`!up/!down/!ps/!logs`)
+- `bot.py` — thin launcher, loads cogs
+- `cogs/tasks.py` — ping-to-build (opencode agent → reply + zip)
+- `cogs/shell.py` — `!run !up !down !ps !logs`
+- `cogs/files.py` — `!zip !get !files`
+- `cogs/general.py` — `!help !ping !model`
+- `core/engine.py` — opencode runner, sandboxing, secret redaction
+- `core/supervisor.py` — background procs
+- `core/helpers.py` — admin checks, chunked sends
+- `config/settings.py` — env loading (one place)
 
 ## Safety notes
 

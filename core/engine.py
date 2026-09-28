@@ -9,7 +9,7 @@ import json
 import os
 
 MODEL = os.getenv("OPENCODE_MODEL", "opencode/muse-spark-1.3-contributor-free")
-ROOT = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SANDBOX = os.path.join(ROOT, "sandbox")
 
 OPENCODE_JSON = {
