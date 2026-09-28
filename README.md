@@ -37,6 +37,7 @@ Discord portal: enable `MESSAGE CONTENT INTENT`, invite with `bot` scope (Send M
 - `cogs/shell.py` — `!run !up !down !ps !logs`
 - `cogs/files.py` — `!zip !get !files`
 - `cogs/general.py` — `!help !ping !model`
+- `cogs/mod.py` — vibe's Discord kit: `!purge !timeout !kick !ban !unban !warn !nick !role !slowmode !lock !avatar !whois !server`
 - `core/engine.py` — opencode runner, sandboxing, secret redaction
 - `core/supervisor.py` — background procs
 - `core/helpers.py` — admin checks, chunked sends

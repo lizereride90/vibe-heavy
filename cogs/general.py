@@ -16,6 +16,8 @@ class General(commands.Cog):
             "`@me <task>` — build anything → reply + zip\n"
             "`!run <cmd>` `!up <name> <cmd>` `!down <name>` `!ps` `!logs <name>` (admin)\n"
             "`!zip <path>` `!get <path>` `!files [path]` (admin)\n"
+            "`!purge !timeout !kick !ban !warn !nick !role !slowmode !lock` (admin)\n"
+            "`!avatar !whois !server !warns` (everyone)\n"
             f"`!model` — current opencode model")
 
     @commands.command(name="ping")
