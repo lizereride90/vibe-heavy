@@ -28,7 +28,9 @@ Discord portal: enable `MESSAGE CONTENT INTENT`, invite with `bot` scope (Send M
 
 ## How the AI works
 
-`engine.run_task()` shells out to `opencode run -m <model> --dir <sandbox> --format json "<task>"`. Opencode gets full edit/bash powers **only inside that sandbox** (`opencode.json` with `"*": "allow"` is written per-task dir). Secrets from `.env` are redacted from anything the bot prints.
+`@ping` goes through `core/vibe_bridge.py`: opencode (muse-spark) **plans** Discord actions as JSON, the bot **executes** them with vibe's full toolset (`core/vibe/tools.py` — same 100+ tools as vibe-bot: members, roles, channels, mod, voice, polls, tickets, giveaways, triggers, welcome...). Multi-round chaining (lookup → act), max 3 rounds. Coding tasks build files + zip instead. No Gemini/Groq anywhere.
+
+- `cogs/vibe.py` — passive life: welcome/goodbye, autorole, member counter, reaction roles, first-🎉 giveaway wins
 
 ## Files
 

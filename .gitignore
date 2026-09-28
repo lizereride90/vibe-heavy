@@ -2,6 +2,7 @@
 sandbox/
 logs/
 procs.json
+core/vibe/*.json
 __pycache__/
 *.pyc
 *.log

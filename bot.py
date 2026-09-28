@@ -11,7 +11,7 @@ from discord.ext import commands
 from config import settings as cfg
 from core import engine
 
-COGS = ("cogs.tasks", "cogs.shell", "cogs.files", "cogs.general", "cogs.mod")
+COGS = ("cogs.tasks", "cogs.shell", "cogs.files", "cogs.general", "cogs.mod", "cogs.vibe")
 
 
 class Heavy(commands.Bot):
