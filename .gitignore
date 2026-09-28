@@ -1,0 +1,9 @@
+.env
+sandbox/
+logs/
+procs.json
+__pycache__/
+*.pyc
+*.log
+.venv/
+venv/
