@@ -80,6 +80,16 @@ async def ask(prompt: str, guild, author_is_admin: bool, context: dict, origin=N
             )
         except Exception as e:
             print(f"LLM error (gemini+groq): {type(e).__name__}: {str(e)[:200]}")
+            if "thought_signature" in str(e):
+                # thinking-model + tools bug on 2nd loop turn: finish with a
+                # plain no-tools answer so watchdog Q&A still replies
+                try:
+                    content, _, _ = await llm.chat(
+                        messages, tools=None, temperature=0.7,
+                        max_tokens=1000, groq_model=GROQ_MODEL)
+                    return content or "done.", created_roles
+                except Exception as e2:
+                    print(f"LLM plain retry failed: {type(e2).__name__}: {str(e2)[:150]}")
             return None, created_roles
 
         if not tool_calls:

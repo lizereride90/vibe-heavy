@@ -31,7 +31,12 @@ bot = Heavy(command_prefix=cfg.PREFIX, intents=intents, help_command=None)
 @bot.event
 async def on_ready():
     print(f"Heavy online as {bot.user} ({bot.user.id}) in {len(bot.guilds)} servers | model={cfg.MODEL}")
-    await bot.change_presence(discord.Activity(
+    try:
+        from core.vibe import llm as _llm
+        await _llm.probe_and_log()
+    except Exception as e:
+        print(f"llm probe skipped: {e}")
+    await bot.change_presence(activity=discord.Activity(
         type=discord.ActivityType.listening, name="@me + task | !help"))
 
 
