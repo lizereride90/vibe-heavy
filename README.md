@@ -30,7 +30,7 @@ Discord portal: enable `MESSAGE CONTENT INTENT`, invite with `bot` scope (Send M
 
 `@ping` goes through `core/vibe_bridge.py`: opencode (muse-spark) **plans** Discord actions as JSON, the bot **executes** them with vibe's full toolset (`core/vibe/tools.py` — same 100+ tools as vibe-bot: members, roles, channels, mod, voice, polls, tickets, giveaways, triggers, welcome...). Multi-round chaining (lookup → act), max 3 rounds. Coding tasks build files + zip instead. No Gemini/Groq anywhere.
 
-- `cogs/vibe.py` — passive life: welcome/goodbye, autorole, member counter, reaction roles, first-🎉 giveaway wins
+- `cogs/vibe.py` — passive life: welcome/goodbye, autorole, member counter, reaction roles, first-🎉 giveaway wins + watchdog auto-mod scan (Gemini, passive messages only)
 
 ## Files
 

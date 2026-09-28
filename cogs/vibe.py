@@ -10,6 +10,8 @@ from discord.ext import commands
 from core.vibe import settings as cfg
 from core.vibe.tools import _find_role, _find_text_channel, _fmt
 from core.vibe.ui import send_v2
+from core.vibe.watchdog import ENABLED as WATCHDOG_ON, watch
+from config import settings as hcfg
 
 
 async def _update_counter(guild: discord.Guild):
@@ -32,6 +34,32 @@ async def _update_counter(guild: discord.Guild):
 class VibeLife(commands.Cog):
     def __init__(self, bot: commands.Bot):
         self.bot = bot
+
+    @commands.Cog.listener()
+    async def on_message(self, message: discord.Message):
+        """Passive watchdog scan: scams/spam get modded, server questions get
+        answered (Gemini), normal chat ignored. Skips pings (tasks cog) and !cmds."""
+        try:
+            if message.author.bot or not message.guild or not self.bot.user:
+                return
+            if not WATCHDOG_ON:
+                return
+            if message.content.strip().startswith(hcfg.PREFIX):
+                return
+            me = self.bot.user
+            if me in message.mentions:
+                return
+            if message.reference and message.reference.message_id:
+                try:
+                    ref = message.reference.resolved or await message.channel.fetch_message(
+                        message.reference.message_id)
+                    if ref and ref.author == me:
+                        return
+                except Exception:
+                    pass
+            await watch(message)
+        except Exception as e:
+            print(f"watchdog error: {type(e).__name__}: {str(e)[:200]}")
 
     @commands.Cog.listener()
     async def on_member_join(self, member: discord.Member):
